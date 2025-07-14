@@ -96,26 +96,35 @@ app.get('/country/at-least/germany', (req, res) => {
     boolean = true
   res.status(200).json(boolean);
   } else {
-  res.status(404).json({msj:'Books not found!'});
+  res.status(404).json(boolean);
   } 
 });
 
 //Ej 10
 
 app.get('/pages/all-greater/200', (req, res) => {
-  let contador = 0;
-  let boolean = false;
+  // let contador = 0;
+  // let boolean = false;
   
-  const allPages = books.forEach((book) => {
-   if (book.pages > 200){
-    contador++ 
-   }});
-  if (contador == books.length){
-    boolean = true
-  res.status(200).json(boolean);
-  } else {
-  res.status(404).json(boolean);
-  } 
+  // const allPages = books.forEach((book) => {
+  //  if (book.pages > 200){
+  //   contador++ 
+  //  }});
+  // if (contador == books.length){
+  //   boolean = true
+  // res.status(200).json(boolean);
+  // } else {
+  // res.status(404).json(boolean);
+  // } 
+/*********** Ej simplificado con metodo every ***********/
+  const allPages = books.every((book) => {
+    return book.pages > 200 })
+    if (allPages == true) {
+      res.status(200).json(true);
+    } else {
+      res.status(200).json(false);
+    }
+  
 });
 
 app.listen(port, () => {
